@@ -3,53 +3,6 @@
 # 
 #
 
-if [ "$#" -lt  "6" ] || [ "$#" -gt "6" ]
-   then
-    echo "$0 -vs [true|false] -nodejs [true|false] -oc [true|false] "
- else
-
-    while [[ $# > 1 ]]
-    do
-        key="$1"
-
-        case $key in
-            -vs|--vs)
-            VS_INSTALL="$2"
-            shift # past argument
-            ;;
-            -nodejs|--nodejs)
-            NODE_INSTALL="$2"
-            shift # past argument
-            ;;
-            -oc|--oc)
-            OC_INSTALL="$2"
-            shift # past argument
-            ;;
-            *)
-                    # unknown option
-            ;;
-        esac
-        shift # past argument or value
-    done
-
-    if [ "$VS_INSTALL" = true ]
-    then
-        install_vs_code
-    fi
-
-    if [ "$NODEJS_INSTALL" = true ]
-    then
-        install_nodejs
-    fi
-
-    if [ "$OC_INSTALL" = true ]
-    then
-        install_oc
-    fi
-
-
-fi
-
 ### Install Visual Code from Microsoft
 ### TODO Check the install -f and clean steps
 function install_vs_code {
@@ -96,5 +49,55 @@ function install_oc {
     cd openshift-origin-client-tools-v3.7.1-ab0f056-linux-64bit
 
 }
+
+
+
+if [ "$#" -lt  "6" ] || [ "$#" -gt "6" ]
+   then
+    echo "$0 -vs [true|false] -nodejs [true|false] -oc [true|false] "
+ else
+
+    while [[ $# > 1 ]]
+    do
+        key="$1"
+
+        case $key in
+            -vs|--vs)
+            VS_INSTALL="$2"
+            shift # past argument
+            ;;
+            -nodejs|--nodejs)
+            NODEJS_INSTALL="$2"
+            shift # past argument
+            ;;
+            -oc|--oc)
+            OC_INSTALL="$2"
+            shift # past argument
+            ;;
+            *)
+                    # unknown option
+            ;;
+        esac
+        shift # past argument or value
+    done
+
+    if [ "$VS_INSTALL" = true ]
+    then
+        install_vs_code
+    fi
+
+    if [ "$NODEJS_INSTALL" = true ]
+    then
+        install_nodejs
+    fi
+
+    if [ "$OC_INSTALL" = true ]
+    then
+        install_oc
+    fi
+
+
+fi
+
 
 
