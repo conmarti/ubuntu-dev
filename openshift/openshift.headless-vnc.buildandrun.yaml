@@ -177,4 +177,16 @@ parameters:
   from: '[a-zA-Z0-9]{8}'
   generate: expression
   name: VNC_PW
-  required: true  
+  required: true
+- description: Install Visual Code from Microsoft
+  name: VC_INSTALL
+  value: "true"
+  required: true
+- description: Install Nodejs
+  name: NODEJS_INSTALL
+  value: "true"
+  required: true
+- description: Install OpenShift OC Tool
+  name: OC_INSTALL
+  value: "true"
+  required: true        
