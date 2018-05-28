@@ -1,21 +1,21 @@
 apiVersion: v1
 kind: Template
 labels:
-  template: headless-vnc-build-and-run
+  template: ubuntu-dev-build-and-run
 metadata:
   annotations:
-    description: Headless VNC (build & run)
+    description: Headless VNC Dev based on Ubuntu (build & run)
     iconClass: icon-beaker
-    tags: headless,vnc,consol
+    tags: headless,vnc,consol,dev,ubuntu
     version: 1.0.3
   creationTimestamp: null
-  name: headless-vnc-build-and-run
+  name: ubuntu-dev-build-and-run
 objects:
 - apiVersion: v1
   kind: Service
   metadata:
     annotations:
-      description: Headless vnc and http port
+      description: Headless VNC Dev based on Ubuntu and http port
     labels:
       application: ${APPLICATION_NAME}
     name: ${APPLICATION_NAME}
@@ -72,6 +72,9 @@ objects:
       type: Docker
       dockerStrategy:
         dockerfilePath: ${SOURCE_DOCKERFILE}
+        env:
+          - name: VNC_PW
+            value: ${VNC_PW} 
     triggers:
     - github:
         secret: ${GITHUB_WEBHOOK_SECRET}
@@ -153,7 +156,7 @@ parameters:
 - description: Git source URI for application
   name: SOURCE_REPOSITORY_URL
   required: true
-  value: https://github.com/ConSol/docker-headless-vnc-container.git
+  value: http://gogs-front-end.telitcaas1.t-internal.com/ulkoenig/ubuntu-dev.git
 - description: Git branch/tag reference
   name: SOURCE_REPOSITORY_REF
   value: "master"
@@ -170,3 +173,8 @@ parameters:
   generate: expression
   name: GENERIC_WEBHOOK_SECRET
   required: true
+- description: VNC Password
+  from: '[a-zA-Z0-9]{8}'
+  generate: expression
+  name: VNC_PW
+  required: true  

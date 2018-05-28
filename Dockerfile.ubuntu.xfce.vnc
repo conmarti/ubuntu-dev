@@ -39,19 +39,39 @@ ADD ./src/common/install/ $INST_SCRIPTS/
 ADD ./src/ubuntu/install/ $INST_SCRIPTS/
 RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
-### Install some common tools
-RUN $INST_SCRIPTS/tools.sh \
-    $INST_SCRIPTS/tigervnc.sh \
-    $INST_SCRIPTS/no_vnc.sh \
-    $INST_SCRIPTS/xfce_ui.sh \
-    $INST_SCRIPTS/libnss_wrapper.sh
+### Install some common tools before next RUN
+RUN $INST_SCRIPTS/tools.sh
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-## ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+### Install Visual Code Editor
+### RUN $INST_SCRIPTS/vs-code.sh
 
+### Install Openshift client tools
+### RUN $INST_SCRIPTS/openshift_tools.sh
+
+### Install Openshift client tools
+### RUN $INST_SCRIPTS/nodejs.sh
+
+### Add Display resolution for Dell Notebook
+### RUN $INST_SCRIPTS/display_resolution.sh
+
+### Install xvnc-server & noVNC - HTML5 based VNC viewer
+RUN $INST_SCRIPTS/tigervnc.sh
+RUN $INST_SCRIPTS/no_vnc.sh
+
+### Install firefox and chrome browser
+### RUN $INST_SCRIPTS/firefox.sh
+### RUN $INST_SCRIPTS/chrome.sh
+
+### Install xfce UI
+RUN $INST_SCRIPTS/xfce_ui.sh
 ADD ./src/common/xfce/ $HOME/
 
+### configure startup
+RUN $INST_SCRIPTS/libnss_wrapper.sh
 ADD ./src/common/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
+
 
 USER 1000
 
