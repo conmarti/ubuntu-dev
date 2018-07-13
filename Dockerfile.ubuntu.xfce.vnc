@@ -55,9 +55,7 @@ RUN apt-get update && \
     wget -qO- https://github.com/novnc/websockify/archive/v0.6.1.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME/utils/websockify && \
     chmod +x -v $NO_VNC_HOME/utils/*.sh && \
     ln -s $NO_VNC_HOME/vnc_lite.html $NO_VNC_HOME/index.html && \
-    mkdir -p "$FF_INST" && \
-    wget -qO- http://releases.mozilla.org/pub/firefox/releases/62.0b8/linux-x86_64/en-US/firefox-62.0b8.tar.bz2 | tar xvj --strip 1 -C $FF_INST && \
-    ln -s "$FF_INST/firefox" /usr/bin/firefox && \
+    
     echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HOME/.chromium-browser.init && \
     echo "xrandr --addmode VNC-0 1600x900_60.00" >> $HOME/.profile && \
     echo "xrandr --newmode \"1600x900_60.00\"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync" >> $HOME/.profile
