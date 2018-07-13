@@ -44,10 +44,21 @@ RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 ### Install some common tools before next RUN
 ### RUN $INST_SCRIPTS/tools.sh
 
-RUN apt-get update && \ 
-    apt-get install -y vim wget curl net-tools locales bzip2 git-core python-numpy chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg && \   
+
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+sudo apt-get update
+sudo apt-get install google-chrome-stable
+
+
+RUN 
+    apt-get update && \ 
+    apt-get install -y vim wget curl net-tools locales bzip2 git-core python-numpy && \
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list && \
+    apt-get update && \
+    apt-get install google-chrome-stable && \  
     apt-get clean -y && \
-    ln -s /usr/bin/chromium-browser /usr/bin/google-chrome && \
     locale-gen en_US.UTF-8 && \
     wget -qO- https://dl.bintray.com/tigervnc/stable/tigervnc-1.8.0.x86_64.tar.gz | tar xz --strip 1 -C / && \
     mkdir -p $NO_VNC_HOME/utils/websockify && \
@@ -56,11 +67,15 @@ RUN apt-get update && \
     chmod +x -v $NO_VNC_HOME/utils/*.sh && \
     ln -s $NO_VNC_HOME/vnc_lite.html $NO_VNC_HOME/index.html && \
     mkdir -p "$FF_INST" && \
-    wget -qO- http://releases.mozilla.org/pub/firefox/releases/62.0b8/linux-x86_64/en-US/firefox-62.0b8.tar.bz2 | tar xvj --strip 1 -C $FF_INST && \
+    wget -qO- http://releases.mozilla.org/pub/firefox/releases/61.0.1/linux-x86_64/en-US/firefox-61.0.1.tar.bz2 | tar xvj --strip 1 -C $FF_INST && \
     ln -s "$FF_INST/firefox" /usr/bin/firefox && \
     echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HOME/.chromium-browser.init && \
     echo "xrandr --addmode VNC-0 1600x900_60.00" >> $HOME/.profile && \
-    echo "xrandr --newmode \"1600x900_60.00\"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync" >> $HOME/.profile
+    echo "xrandr --newmode \"1600x900_60.00\"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync" >> $HOME/.profile && \
+    $INST_SCRIPTS/install_all.sh -vs $VC_INSTALL -nodejs $NODEJS_INSTALL -oc $OC_INSTALL && \
+    $INST_SCRIPTS/xfce_ui.sh && \
+    $INST_SCRIPTS/libnss_wrapper.sh
+
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
@@ -78,7 +93,7 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 
 ### Run install_all.sh
-RUN $INST_SCRIPTS/install_all.sh -vs $VC_INSTALL -nodejs $NODEJS_INSTALL -oc $OC_INSTALL
+### RUN $INST_SCRIPTS/install_all.sh -vs $VC_INSTALL -nodejs $NODEJS_INSTALL -oc $OC_INSTALL
 
 ### Install xvnc-server & noVNC - HTML5 based VNC viewer
 ### RUN $INST_SCRIPTS/tigervnc.sh
@@ -89,11 +104,11 @@ RUN $INST_SCRIPTS/install_all.sh -vs $VC_INSTALL -nodejs $NODEJS_INSTALL -oc $OC
 ### RUN $INST_SCRIPTS/chrome.sh
 
 ### Install xfce UI
-RUN $INST_SCRIPTS/xfce_ui.sh
+### RUN $INST_SCRIPTS/xfce_ui.sh
 ADD ./src/common/xfce/ $HOME/
 
 ### configure startup
-RUN $INST_SCRIPTS/libnss_wrapper.sh
+### RUN $INST_SCRIPTS/libnss_wrapper.sh
 ADD ./src/common/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
