@@ -40,7 +40,13 @@ ADD ./src/ubuntu/install/ $INST_SCRIPTS/
 RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
 ### Install some common tools before next RUN
-RUN $INST_SCRIPTS/tools.sh
+### RUN $INST_SCRIPTS/tools.sh
+
+RUN apt-get update && \ 
+    apt-get install -y vim wget curl net-tools locales bzip2 git-core python-numpy && \   
+    apt-get clean -y && \
+    locale-gen en_US.UTF-8
+
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 ### Install Visual Code Editor
@@ -61,7 +67,7 @@ RUN $INST_SCRIPTS/install_all.sh -vs $VC_INSTALL -nodejs $NODEJS_INSTALL -oc $OC
 
 ### Install xvnc-server & noVNC - HTML5 based VNC viewer
 RUN $INST_SCRIPTS/tigervnc.sh
-RUN $INST_SCRIPTS/no_vnc.sh
+### RUN $INST_SCRIPTS/no_vnc.sh
  
 ### Install firefox and chrome browser
 ### RUN $INST_SCRIPTS/firefox.sh
