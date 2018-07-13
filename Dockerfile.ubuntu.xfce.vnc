@@ -33,7 +33,7 @@ ENV HOME=/headless \
     LANGUAGE='en_US:en' \
     LC_ALL='en_US.UTF-8' \
     FF_INST='/usr/lib/firefox'
-    FF_VERS='
+  
 WORKDIR $HOME
 
 ### Add all install scripts for further steps
