@@ -74,7 +74,13 @@ objects:
         dockerfilePath: ${SOURCE_DOCKERFILE}
         env:
           - name: VNC_PW
-            value: ${VNC_PW} 
+            value: ${VNC_PW}
+          - name: VC_INSTALL
+            value: "true"
+          - name: NODEJS_INSTALL
+            value: "true"
+          - name: OC_INSTALL
+            value: "true"
     triggers:
     - github:
         secret: ${GITHUB_WEBHOOK_SECRET}
