@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Template
 labels:
-  template: ubuntu-dev-build-and-run
+  template: ubuntu-dev
 metadata:
   annotations:
-    description: Headless VNC Dev based on Ubuntu (build & run)
+    description: Headless VNC Developer container based on Ubuntu (build & run)
     iconClass: icon-beaker
     tags: headless,vnc,consol,dev,ubuntu
     version: 1.0.3
   creationTimestamp: null
-  name: ubuntu-dev-build-and-run
+  name: ubuntu-dev
 objects:
 - apiVersion: v1
   kind: Service
@@ -75,12 +75,6 @@ objects:
         env:
           - name: VNC_PW
             value: ${VNC_PW}
-          - name: VC_INSTALL
-            value: "true"
-          - name: NODEJS_INSTALL
-            value: "true"
-          - name: OC_INSTALL
-            value: "true"
     triggers:
     - github:
         secret: ${GITHUB_WEBHOOK_SECRET}
@@ -155,7 +149,7 @@ parameters:
 - description: The name for the application.
   name: APPLICATION_NAME
   required: true
-  value: headless-vnc
+  value: ubunut-dev
 - description: 'Custom hostname for http service route.  Leave blank for default hostname,
     e.g.: <application-name>-<project>.<default-domain-suffix>'
   name: HOSTNAME_HTTP
@@ -168,7 +162,7 @@ parameters:
   value: "master"
 - description: Name of the Dockerfile for example Dockerfile.ubuntu.xfce.vnc, Dockerfile.centos.icewm.vnc, Dockerfile.ubuntu.icewm.vnc or Dockerfile.centos.xfce.vnc
   name: SOURCE_DOCKERFILE
-  value: Dockerfile.ubuntu.xfce.vnc
+  value: Dockerfile.ubuntu.dev
 - description: GitHub trigger secret
   from: '[a-zA-Z0-9]{8}'
   generate: expression
@@ -183,16 +177,4 @@ parameters:
   from: '[a-zA-Z0-9]{8}'
   generate: expression
   name: VNC_PW
-  required: true
-- description: Install Visual Code from Microsoft
-  name: VC_INSTALL
-  value: "true"
-  required: true
-- description: Install Nodejs
-  name: NODEJS_INSTALL
-  value: "true"
-  required: true
-- description: Install OpenShift OC Tool
-  name: OC_INSTALL
-  value: "true"
-  required: true        
+  required: true  
