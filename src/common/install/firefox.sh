@@ -6,16 +6,13 @@ echo "Install Firefox"
 function disableUpdate(){
     ff_def="$1/browser/defaults/profile"
     mkdir -p $ff_def
-    echo <<EOF_FF
-user_pref("app.update.auto", false);
-user_pref("app.update.enabled", false);
-user_pref("app.update.lastUpdateTime.addon-background-update-timer", 1182011519);
-user_pref("app.update.lastUpdateTime.background-update-timer", 1182011519);
-user_pref("app.update.lastUpdateTime.blocklist-background-update-timer", 1182010203);
-user_pref("app.update.lastUpdateTime.microsummary-generator-update-timer", 1222586145);
-user_pref("app.update.lastUpdateTime.search-engine-update-timer", 1182010203);
-EOF_FF
-    > $ff_def/user.js
+    echo "user_pref("app.update.auto", false);" > $ff_def/user.js
+    echo "user_pref("app.update.enabled", false);" >> $ff_def/user.js
+    echo "user_pref("app.update.lastUpdateTime.addon-background-update-timer", 1182011519);" >> $ff_def/user.js
+    echo "user_pref("app.update.lastUpdateTime.background-update-timer", 1182011519);" >> $ff_def/user.js
+    echo "user_pref("app.update.lastUpdateTime.blocklist-background-update-timer", 1182010203);" >> $ff_def/user.js
+    echo "user_pref("app.update.lastUpdateTime.microsummary-generator-update-timer", 1222586145);" >> $ff_def/user.js
+    echo "user_pref("app.update.lastUpdateTime.search-engine-update-timer", 1182010203);" >> $ff_def/user.js
 }
 
 #copy from org/sakuli/common/bin/installer_scripts/linux/install_firefox_portable.sh
