@@ -51,7 +51,6 @@ RUN $INST_SCRIPTS/tools.sh && \
     $INST_SCRIPTS/xfce_ui.sh
     
 ADD ./src/common/xfce/ $HOME/
-RUN source $HOME/.config/display_resolution
 
 ### configure startup
 RUN $INST_SCRIPTS/libnss_wrapper.sh
