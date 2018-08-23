@@ -75,6 +75,8 @@ objects:
         env:
           - name: VNC_PW
             value: ${VNC_PW}
+          - name: INSTALL_NODEJS
+            value: ${INSTALL_NODEJS}  
     triggers:
     - github:
         secret: ${GITHUB_WEBHOOK_SECRET}
@@ -100,7 +102,7 @@ objects:
     template:
       metadata:
         labels:
-          application: ${APPLICATION_NAME}
+          application: ${APPLICATION_NAME}INSTALL_NODEJS
           deploymentConfig: ${APPLICATION_NAME}
         name: ${APPLICATION_NAME}
       spec:
@@ -177,4 +179,9 @@ parameters:
   from: '[a-zA-Z0-9]{8}'
   generate: expression
   name: VNC_PW
-  required: true  
+  required: true
+- description: Install NODE.JS development environment with nodejs V6 and Visual Code Editor. For installation set value to TRUE
+  name: INSTALL_NODEJS
+  value: "FALSE"
+
+INSTALL_NODEJS

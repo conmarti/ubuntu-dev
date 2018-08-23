@@ -31,7 +31,8 @@ ENV HOME=/headless \
     VNC_VIEW_ONLY=false \
     LANG='en_US.UTF-8' \
     LANGUAGE='en_US:en' \
-    LC_ALL='en_US.UTF-8'
+    LC_ALL='en_US.UTF-8' \
+    INSTALL_NODEJS=FALSE
 WORKDIR $HOME
 
 ### Add all install scripts for further steps
@@ -50,7 +51,9 @@ RUN $INST_SCRIPTS/tools.sh && \
     $INST_SCRIPTS/chrome.sh && \
     $INST_SCRIPTS/xfce_ui.sh && \
     $INST_SCRIPTS/openshift_tools.sh && \
-    $INST_SCRIPTS/postman.sh
+    $INST_SCRIPTS/postman.sh && \
+    $INST_SCRIPTS/toosl_adv.sh && \
+    $INST_SCRIPTS/toosl_nodejs.sh -i $INSTALL_NODEJS
     
 ADD ./src/common/xfce/ $HOME/
 
