@@ -183,5 +183,3 @@ parameters:
 - description: Install NODE.JS development environment with nodejs V6 and Visual Code Editor. For installation set value to TRUE
   name: INSTALL_NODEJS
   value: "FALSE"
-
-INSTALL_NODEJS

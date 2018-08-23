@@ -52,8 +52,8 @@ RUN $INST_SCRIPTS/tools.sh && \
     $INST_SCRIPTS/xfce_ui.sh && \
     $INST_SCRIPTS/openshift_tools.sh && \
     $INST_SCRIPTS/postman.sh && \
-    $INST_SCRIPTS/toosl_adv.sh && \
-    $INST_SCRIPTS/toosl_nodejs.sh -i $INSTALL_NODEJS
+    $INST_SCRIPTS/tools_adv.sh && \
+    $INST_SCRIPTS/tools_nodejs.sh -i $INSTALL_NODEJS
     
 ADD ./src/common/xfce/ $HOME/
 
