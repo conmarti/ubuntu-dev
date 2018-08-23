@@ -48,7 +48,9 @@ RUN $INST_SCRIPTS/tools.sh && \
     $INST_SCRIPTS/no_vnc.sh && \
     $INST_SCRIPTS/firefox.sh && \
     $INST_SCRIPTS/chrome.sh && \
-    $INST_SCRIPTS/xfce_ui.sh
+    $INST_SCRIPTS/xfce_ui.sh && \
+    $INST_SCRIPTS/openshift_tools.sh && \
+    $INST_SCRIPTS/postman.sh
     
 ADD ./src/common/xfce/ $HOME/
 
