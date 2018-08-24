@@ -47,16 +47,14 @@ RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 RUN $INST_SCRIPTS/tools.sh && \
     $INST_SCRIPTS/tigervnc.sh && \
     $INST_SCRIPTS/no_vnc.sh && \
+    $INST_SCRIPTS/firefox.sh && \
+    $INST_SCRIPTS/chrome.sh && \
     $INST_SCRIPTS/xfce_ui.sh && \
-    $INST_SCRIPTS/openshift_tools.sh
-#     && \
-#    $INST_SCRIPTS/postman.sh && \
-#    $INST_SCRIPTS/tools_adv.sh && \
-#    $INST_SCRIPTS/tools_nodejs.sh -i $INSTALL_NODEJS
-#    $INST_SCRIPTS/firefox.sh && \
-#    $INST_SCRIPTS/chrome.sh && \
+    $INST_SCRIPTS/openshift_tools.sh && \
+    $INST_SCRIPTS/postman.sh && \
+    $INST_SCRIPTS/tools_adv.sh && \
+    $INST_SCRIPTS/tools_nodejs.sh -i $INSTALL_NODEJS
     
-
 ADD ./src/common/xfce/ $HOME/
 
 ### configure startup
