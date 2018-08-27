@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Template
 labels:
-  template: headless-vnc-run
+  template: ubuntu-dev-run
 metadata:
   annotations:
     description: Headless VNC (only run)
@@ -9,13 +9,13 @@ metadata:
     tags: headless,vnc,consol
     version: 1.0.3
   creationTimestamp: null
-  name: headless-vnc-run
+  name: ubuntu-dev-run
 objects:
 - apiVersion: v1
   kind: Service
   metadata:
     annotations:
-      description: Headless vnc and http port
+      description: Headless VNC Developer container based on Ubuntu
     labels:
       application: ${APPLICATION_NAME}
     name: ${APPLICATION_NAME}
@@ -115,4 +115,4 @@ parameters:
 - description: Headless vnc image
   name: IMAGE
   required: true
-  value: consol/centos-xfce-vnc:dev
+  value: docker-registry.default.svc:5000/sandbox-front-end/ubuntu-dev:latest
