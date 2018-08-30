@@ -4,5 +4,5 @@ set -e
 
 echo "Install some more developer tools"
 apt-get update 
-apt-get install -y dnsutils inetutils-traceroute gedit eclipse netbeans
+apt-get install -y dnsutils inetutils-traceroute gedit netbeans
 apt-get clean -y
