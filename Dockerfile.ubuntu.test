@@ -1,6 +1,6 @@
 # This Dockerfile is used to build an headles vnc image based on Ubuntu
 
-FROM docker-registry.default.svc:5000/sandbox-front-end/ubuntu-dev:latest
+FROM ubuntu:16.04
 
 MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
 ENV REFRESHED_AT 2018-03-27
