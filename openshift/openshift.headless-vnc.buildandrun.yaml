@@ -4,8 +4,9 @@ labels:
   template: ubuntu-dev
 metadata:
   annotations:
-    description: Headless VNC Developer container based on Ubuntu (build & run)
-    iconClass: icon-beaker
+    openshift.io/display-name: "Developer Ubuntu container"
+    description: Headless VNC Developer container based on Ubuntu (build & run) with Eclipse, Netbeans, Visual Studio Code and many more
+    iconClass: icon-ubuntu
     tags: headless,vnc,consol,dev,ubuntu
     version: 1.0.3
   creationTimestamp: null
