@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Eclipse
+Comment=Eclipse starter
+Exec=/usr/local/etc/eclipse/eclipse
+Icon=/usr/local/etc/eclipse/icon.xpm
+Path=/headless
+Terminal=false
+StartupNotify=false

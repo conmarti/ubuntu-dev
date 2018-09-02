@@ -1,0 +1,5 @@
+?package(eclipse):needs="x11" \
+ section="Applications/Programming" \
+ title="Eclipse" \
+ command="/usr/local/etc/eclipse/eclipse" \
+ icon="/usr/local/etc/eclipse/icon.xpm"

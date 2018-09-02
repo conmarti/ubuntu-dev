@@ -2,10 +2,10 @@
 
 FROM ubuntu:16.04
 
-MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
-ENV REFRESHED_AT 2018-03-27
+MAINTAINER Ulrich Koenig "ulrich.koenig@telekom.de"
+ENV REFRESHED_AT 2018-09-03
 
-LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firefox and chromium" \
+LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firefox, chromium and many more" \
       io.k8s.display-name="Headless VNC Container based on Ubuntu" \
       io.openshift.expose-services="6901:http,5901:xvnc" \
       io.openshift.tags="vnc, ubuntu, xfce" \
@@ -56,6 +56,9 @@ RUN $INST_SCRIPTS/tools.sh && \
     $INST_SCRIPTS/tools_nodejs.sh -i $INSTALL_NODEJS
     
 ADD ./src/common/xfce/ $HOME/
+
+### Add menue items to application menu
+ADD ./src/common/xfce/application-menu/ /usr/share/menu/
 
 ### configure startup
 RUN $INST_SCRIPTS/libnss_wrapper.sh

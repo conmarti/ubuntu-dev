@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Netbeans
+Comment=Netbeans IDE
+Exec=/usr/bin/netbeans
+Icon=/usr/share/pixmaps/netbeans.xpm
+Path=/headless
+Terminal=false
+StartupNotify=false

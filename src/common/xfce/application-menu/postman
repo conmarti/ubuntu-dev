@@ -1,0 +1,5 @@
+?package(postman):needs="x11" \
+ section="Applications/Programming" \
+ title="Postman" \
+ command="/usr/local/bin/postman" \
+ icon="/usr/local/etc/Postman/app/resources/app/assets/icon.png"
