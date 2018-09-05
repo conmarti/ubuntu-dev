@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Postamn
+Name=Postman
 Comment=Postman starter
 Exec=postman
 Icon=/usr/local/etc/Postman/app/resources/app/assets/icon.png
