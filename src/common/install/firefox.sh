@@ -41,7 +41,6 @@ function instFF() {
             echo "FF_URL: $FF_URL"
             wget -qO- $FF_URL | tar xvj --strip 1 -C $FF_INST/
             ln -s "$FF_INST/firefox" /usr/bin/firefox
-            //disableUpdate $FF_INST
             setDefault $FF_INST
             exit $?
         fi
