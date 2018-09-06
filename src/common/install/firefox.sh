@@ -6,13 +6,27 @@ echo "Install Firefox"
 function disableUpdate(){
     ff_def="$1/browser/defaults/profile"
     mkdir -p $ff_def
-    echo "user_pref("app.update.auto", false);" > $ff_def/user.js
+    echo "//" > $ff_def/user.js
+    echo "user_pref("app.update.auto", false);" >> $ff_def/user.js
     echo "user_pref("app.update.enabled", false);" >> $ff_def/user.js
     echo "user_pref("app.update.lastUpdateTime.addon-background-update-timer", 1182011519);" >> $ff_def/user.js
     echo "user_pref("app.update.lastUpdateTime.background-update-timer", 1182011519);" >> $ff_def/user.js
     echo "user_pref("app.update.lastUpdateTime.blocklist-background-update-timer", 1182010203);" >> $ff_def/user.js
     echo "user_pref("app.update.lastUpdateTime.microsummary-generator-update-timer", 1222586145);" >> $ff_def/user.js
     echo "user_pref("app.update.lastUpdateTime.search-engine-update-timer", 1182010203);" >> $ff_def/user.js
+}
+
+function setDefault(){
+    ff_cfg="$1/mozilla.cfg"
+    echo "//" > $ff_cfg
+    echo "lockPref("browser.startup.homepage"), "http://www.google.com");" >> $ff_cfg
+    echo "lockPref("app.update.enabled", false);" >> $ff_cfg
+    echo "lock_pref("browser.tabs.remote.autostart", false);" >>$ff_cfg
+    
+    ff_autocfg="$1/defaults/pref/autoconfig.js"
+    echo "//" > $ff_autocfg
+    echo "pref("general.config.obscure_value", 0);" >> $ff_autocfg
+    echo "pref("general.config.filename", "mozilla.cfg");" >>$ff_autocfg
 }
 
 #copy from org/sakuli/common/bin/installer_scripts/linux/install_firefox_portable.sh
@@ -27,7 +41,8 @@ function instFF() {
             echo "FF_URL: $FF_URL"
             wget -qO- $FF_URL | tar xvj --strip 1 -C $FF_INST/
             ln -s "$FF_INST/firefox" /usr/bin/firefox
-            disableUpdate $FF_INST
+            //disableUpdate $FF_INST
+            setDefault $FF_INST
             exit $?
         fi
     fi
