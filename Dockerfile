@@ -31,7 +31,9 @@ ENV HOME=/headless \
     VNC_VIEW_ONLY=false \
     LANG='en_US.UTF-8' \
     LANGUAGE='en_US:en' \
-    LC_ALL='en_US.UTF-8' 
+    LC_ALL='en_US.UTF-8' \
+    INSTALL_NODEJS='TRUE'
+    
 WORKDIR $HOME
 
 ### Add all install scripts for further steps
