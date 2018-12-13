@@ -14,12 +14,11 @@ stages:
     - echo $GV_REGISTRY_PASSWORD | docker login -u $GV_REGISTRY_USERNAME --password-stdin $GV_REGISTRY_ADDRESS
     - if ! docker pull $IMAGE_FQDN; then docker pull $GV_REGISTRY_ADDRESS/$GV_REGISTRY_NAMESPACE/$CI_PROJECT_NAME:master || true; fi
     - docker build -t $IMAGE_FQDN .
+    - docker push $IMAGE_FQDN
 
   tags:
     - run01_docker
-
- ##############################################################
- #   - docker push $IMAGE_FQDN
+##############################################################
 
 
 ##### build and push docker images to mtr registry

@@ -46,22 +46,18 @@ RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 ### Install xvnc-server & noVNC - HTML5 based VNC viewer
 ### Install firefox and chrome browser
 ### Install xfce UI
-#RUN $INST_SCRIPTS/tools.sh && \
-#    $INST_SCRIPTS/tigervnc.sh && \
-#    $INST_SCRIPTS/no_vnc.sh && \
-#    $INST_SCRIPTS/firefox.sh && \
-#    $INST_SCRIPTS/chrome.sh && \
-#    $INST_SCRIPTS/xfce_ui.sh && \
-#    $INST_SCRIPTS/openshift_tools.sh && \
-#    $INST_SCRIPTS/postman.sh && \
-#    $INST_SCRIPTS/tools_adv.sh && \
-#    $INST_SCRIPTS/eclipse.sh && \
-#    $INST_SCRIPTS/tools_nodejs.sh -i $INSTALL_NODEJS
-
 RUN $INST_SCRIPTS/tools.sh && \
+    $INST_SCRIPTS/tigervnc.sh && \
+    $INST_SCRIPTS/no_vnc.sh && \
+    $INST_SCRIPTS/firefox.sh && \
+    $INST_SCRIPTS/chrome.sh && \
+    $INST_SCRIPTS/xfce_ui.sh && \
+    $INST_SCRIPTS/openshift_tools.sh && \
+    $INST_SCRIPTS/postman.sh && \
+    $INST_SCRIPTS/tools_adv.sh && \
+    $INST_SCRIPTS/eclipse.sh && \
     $INST_SCRIPTS/tools_nodejs.sh -i $INSTALL_NODEJS
-
-
+    
 ADD ./src/common/xfce/ $HOME/
 
 ### Add menue items to application menu
