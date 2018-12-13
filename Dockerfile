@@ -58,7 +58,8 @@ RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 #    $INST_SCRIPTS/eclipse.sh && \
 #    $INST_SCRIPTS/tools_nodejs.sh -i $INSTALL_NODEJS
 
-RUN $INST_SCRIPTS/tools_nodejs.sh -i $INSTALL_NODEJS
+RUN $INST_SCRIPTS/tools.sh && \
+    $INST_SCRIPTS/tools_nodejs.sh -i $INSTALL_NODEJS
 
 
 ADD ./src/common/xfce/ $HOME/
