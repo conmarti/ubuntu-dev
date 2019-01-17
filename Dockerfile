@@ -24,6 +24,7 @@ ENV HOME=/headless \
     TERM=xterm \
     STARTUPDIR=/dockerstartup \
     INST_SCRIPTS=/headless/install \
+    MOZILLA_HOME=/headless/.mozilla \
     NO_VNC_HOME=/headless/noVNC \
     DEBIAN_FRONTEND=noninteractive \
     VNC_COL_DEPTH=24 \
@@ -33,7 +34,7 @@ ENV HOME=/headless \
     LANGUAGE='en_US:en' \
     LC_ALL='en_US.UTF-8' \
     INSTALL_NODEJS='TRUE' \
-    VNC_PASSWORD='vncpassword'
+    VNC_PW='vncpassword'
     
 WORKDIR $HOME
 
@@ -66,7 +67,7 @@ ADD ./src/common/xfce/application-menu/ /usr/share/menu/
 ### configure startup
 RUN $INST_SCRIPTS/libnss_wrapper.sh
 ADD ./src/common/scripts $STARTUPDIR
-ADD ./src/ubuntu/env/.mozilla $HOME
+ADD ./src/ubuntu/env/.mozilla $MOZILLA_HOME
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
 USER 1000
