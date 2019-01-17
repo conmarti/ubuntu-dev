@@ -33,8 +33,7 @@ ENV HOME=/headless \
     LANG='en_US.UTF-8' \
     LANGUAGE='en_US:en' \
     LC_ALL='en_US.UTF-8' \
-    INSTALL_NODEJS='TRUE' \
-    VNC_PW='vncpassword'
+    INSTALL_NODEJS='TRUE' 
     
 WORKDIR $HOME
 
